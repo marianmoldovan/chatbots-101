@@ -1,0 +1,22 @@
+{
+  "name": "chatbots-101",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marianmoldovan/chatbots-101.git"
+  },
+  "author": "Marian C. Moldovan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marianmoldovan/chatbots-101/issues"
+  },
+  "homepage": "https://github.com/marianmoldovan/chatbots-101#readme",
+  "dependencies": {
+    "telegraf": "^3.17.7"
+  }
+}
