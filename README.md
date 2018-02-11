@@ -33,3 +33,53 @@ export BOT_TOKEN=somerandomkeythatshouldbethetokenkeyfromthebotfather
 ```
 node index.js
 ```
+
+### Milestone 2. Let's make some small talk
+
+We are going to use Wit.ai as a NLU engine. That means that we are going to send every message the user writes to us to an API, and this service of NLU will let us know what is the intention of the phrase along with the possible entities.
+
+#### 1. We need to design the conversation. We are going to map a series of sentences to an intent. Let's use this:
+smalltalk.hello => hola/buenas
+smalltalk.bye => adiós/hasta luego/bye
+smalltalk.love => me quieres/me amas/me deseas
+smalltalk.creator => quien ha hecho el bot/quien es tu creador/quien te ha hecho
+smalltalk.how => que haces/que tal/que estas haciendo
+smalltalk.miss => te echamos de menos/te echo de menos
+smalltalk.heaven => que tal en el cielo/estas en el cielo/cielo
+smalltalk.menu => que puedes hacer/menu/que funciones tienes
+
+#### 2. Create a [Wit.ai](https://wit.ai/) account and create a new project (in this case in Spanish). Then start writting the sentences from above and associate them with the entity called 'intent' and named just as above. After finished with all the phrases, test a few of them in the wit.ai console to check.
+
+#### 3. Integrate the Wit.ai NLU features in your chatbot. For that, we are going to use the [telegraf-wit](https://github.com/telegraf/telegraf-wit) pluging.
+
+So first install it:
+```npm install telegraf-wit --save```
+Next, add the dependency and create an instance of the object. You may need to search for the API KEY back in the wit console, in the settings area.
+```
+const TelegrafWit = require('telegraf-wit')
+const wit = new TelegrafWit(process.env.WIT_TOKEN)
+```
+Then, inside the on 'text' event we will call wit using the following block. Then we will return the json to the user (just for now).
+```
+return wit.meaning(ctx.message.text).then((result) => {
+    return ctx.reply(JSON.stringify(result, null, 2))
+  })
+```
+
+#### 4. Create response for each one of the intents we create previously. I created a little file containing the text responses to the intents, the file is called [converser.js](converser.js). So, integrate this file in your project and import it as a module. Finally, you need to respond with the phrases from that file. Modify the index.js to have something like this:
+```
+bot.on('text', (ctx) => {
+  return wit.meaning(ctx.message.text).then(respond).then(ctx.reply)
+})
+
+function respond(nlu) {
+  return new Promise((resolve, reject) => {
+    if(nlu.entities.intent && nlu.entities.intent.length > 0){
+      let intent = nlu.entities.intent[0]
+      resolve(converser.smalltalk[intent.value])
+    }
+    else resolve('No te entiendorrrl. Pregúntame otra cosa fistro pecador.')
+  });
+}
+```
+#### 5. Finally, run again the bot and check that responds to the messages. You now, ```node index```
