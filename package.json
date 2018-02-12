@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/marianmoldovan/chatbots-101#readme",
   "dependencies": {
+    "request": "^2.83.0",
     "telegraf": "^3.17.7",
     "telegraf-wit": "^2.1.0"
   }
