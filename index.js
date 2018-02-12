@@ -7,7 +7,7 @@ const wit = new TelegrafWit(process.env.WIT_TOKEN)
 
 bot.on('text', (ctx) => {
   wit.meaning(ctx.message.text)
-    .then(nlu)
+    .then(dialog)
     .then(ctx.reply)
 })
 
