@@ -34,6 +34,9 @@ export BOT_TOKEN=somerandomkeythatshouldbethetokenkeyfromthebotfather
 node index.js
 ```
 
+#### 7. You can check the code of this milestone at [Milestone 1](https://github.com/marianmoldovan/chatbots-101/tree/4b615ce9b78638c95f0ac6b62b074404b7baf804)
+
+
 ### Milestone 2. Let's make some small talk
 
 We are going to use Wit.ai as a NLU engine. That means that we are going to send every message the user writes to us to an API, and this service of NLU will let us know what is the intention of the phrase along with the possible entities.
@@ -83,6 +86,9 @@ function respond(nlu) {
 }
 ```
 #### 5. Finally, run again the bot and check that responds to the messages. You now, ```node index```
+
+#### 6. You can check the code of this milestone at [Milestone 2](https://github.com/marianmoldovan/chatbots-101/tree/1d3e2e686cecc562e8cd2b187a47b044c34982af)
+
 
 ### Milestone 3. Let's make the chatbot a little bit smarter
 
