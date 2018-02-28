@@ -13,7 +13,7 @@ npm init
 ```
 npm install telegraf -s
 ```
-#### 4. Write some code for a Hello World chatbot, something like:
+#### 4. Write some code for a Hello World chatbot, something like this and wrap it around inside index.js script:
 ```
 const Telegraf = require('telegraf')
 
@@ -51,13 +51,17 @@ We are going to use Wit.ai as a NLU engine. That means that we are going to send
 * smalltalk.heaven => que tal en el cielo/estas en el cielo/cielo  
 * smalltalk.menu => que puedes hacer/menu/que funciones tienes  
 
-#### 2. Create a [Wit.ai](https://wit.ai/) account and create a new project (in this case in Spanish). Then start writting the sentences from above and associate them with the entity called 'intent' and named just as above. After finished with all the phrases, test a few of them in the wit.ai console to check.
+#### 2. Create a [Wit.ai](https://wit.ai/) account and create a new project (in this case in Spanish). Then start writting the sentences from above and associate them with the entity called 'intent' and named just as above. After finished with all the phrases, test a few of them in the wit.ai console to check. Wit quick guide https://wit.ai/docs/quickstart.
 
 #### 3. Integrate the Wit.ai NLU features in your chatbot. For that, we are going to use the [telegraf-wit](https://github.com/telegraf/telegraf-wit) pluging.
 
 So first install it:
 ```npm install telegraf-wit --save```
-Next, add the dependency and create an instance of the object. You may need to search for the API KEY back in the wit console, in the settings area.
+Next, add the dependency and create an instance of the object. You may need to search for the API KEY back in the wit console, in the settings area. Set an environment var with the key.
+```
+export WIT_TOKEN=somerandomkeythatshouldbethetokenkeyfromWit
+```
+And at the top of index.js.
 ```
 const TelegrafWit = require('telegraf-wit')
 const wit = new TelegrafWit(process.env.WIT_TOKEN)
